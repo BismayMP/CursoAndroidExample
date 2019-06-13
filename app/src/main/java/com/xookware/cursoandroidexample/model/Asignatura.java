@@ -6,6 +6,7 @@ package com.xookware.cursoandroidexample.model;
 
 public class Asignatura {
 
+    private int id;
     private String nombre;
     private String nombreProfesor;
     private int nota;
@@ -18,6 +19,23 @@ public class Asignatura {
         this.nota = nota;
         this.annio = annio;
         this.semestre = semestre;
+    }
+
+    public Asignatura(int id, String nombre, String nombreProfesor, int nota, int annio, int semestre) {
+        this.id = id;
+        this.nombre = nombre;
+        this.nombreProfesor = nombreProfesor;
+        this.nota = nota;
+        this.annio = annio;
+        this.semestre = semestre;
+    }
+
+    public Asignatura() {
+
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getNombre() {
