@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:layout_margin="5dp"
+    android:orientation="horizontal"
+    app:cardElevation="5dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/icono"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="start|center_vertical"
+                android:layout_weight="1"
+                android:elevation="15dp"
+                android:src="@drawable/asignaturas" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical|end"
+            android:layout_margin="5dp"
+            android:layout_weight="1.8"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/nombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:layout_margin="3dp"
+                android:gravity="left"
+                android:text="nombre"
+                android:textSize="@dimen/fab_margin"
+                android:textColor="@color/Black"></TextView>
+
+
+            <TextView
+                android:id="@+id/profesor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/DimGray"
+                android:textSize="@dimen/fab_margin"
+                tools:text="Profesor" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</android.support.v7.widget.CardView>

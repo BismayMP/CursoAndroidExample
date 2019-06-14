@@ -45,8 +45,8 @@ public class DataBaseHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         /*Aqui lo que se hace simplemente es ejecutar un query y esto porque android te permite usar
         * clases para el manejo de bases de datos*/
-        String CREATE_CARTABON_TABLE = "CREATE TABLE " + TABLE_CURSO + "(" + ID + "INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT"
-                + NOMBRE + " TEXT NOT NULL PRIMARY KEY," + NOMBRE_PROFESOR + " TEXT,"
+        String CREATE_CARTABON_TABLE = "CREATE TABLE " + TABLE_CURSO + "(" + ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + NOMBRE + " TEXT NOT NULL," + NOMBRE_PROFESOR + " TEXT,"
                 + NOTA + " TEXT," + ANNIO + " INTEGER," + SEMESTRE + " INTEGER );";
         db.execSQL(CREATE_CARTABON_TABLE);
 
@@ -75,7 +75,7 @@ public class DataBaseHandler extends SQLiteOpenHelper {
     // Insertar
     public void insertar(Asignatura asignatura) {
         SQLiteDatabase db = this.getWritableDatabase();
-//el id no se añade porque lo declare autoincrementado
+//el id no se añade porque lo declaré autoincrementado
         ContentValues values = new ContentValues();
         values.put(NOMBRE, asignatura.getNombre());
         values.put(NOMBRE_PROFESOR, asignatura.getNombreProfesor());
@@ -108,7 +108,7 @@ public class DataBaseHandler extends SQLiteOpenHelper {
     public LinkedList<Asignatura> getAlL() {
         LinkedList<Asignatura> list = new LinkedList<Asignatura>();
         // Select All Query
-        String selectQuery = "SELECT  * FROM " + TABLE_CURSO;
+        String selectQuery = "SELECT * FROM " + TABLE_CURSO;
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -124,6 +124,7 @@ public class DataBaseHandler extends SQLiteOpenHelper {
                 asignatura.setNota(cursor.getInt(3));
                 asignatura.setAnnio(cursor.getInt(4));
                 asignatura.setSemestre(cursor.getInt(5));
+                list.add(asignatura);
             } while (cursor.moveToNext());
         }
 
@@ -137,13 +138,14 @@ public class DataBaseHandler extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
 
+        values.put(ID, asignatura.getId());
         values.put(NOMBRE, asignatura.getNombre());
         values.put(NOMBRE_PROFESOR, asignatura.getNombreProfesor());
         values.put(NOTA, asignatura.getNota());
         values.put(ANNIO, asignatura.getAnnio());
         values.put(SEMESTRE, asignatura.getSemestre());
 
-        return db.update(TABLE_CURSO, values, ID + " = ?",
+        return db.update(TABLE_CURSO, values, ID + "=?;",
                 new String[]{String.valueOf(asignatura.getId())});
     }
 

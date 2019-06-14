@@ -1,5 +1,7 @@
 package com.xookware.cursoandroidexample.model;
 
+import android.support.annotation.Nullable;
+
 /**
  * Created by Bismay on 13/6/2019.
  */
@@ -21,7 +23,7 @@ public class Asignatura {
         this.semestre = semestre;
     }
 
-    public Asignatura(int id, String nombre, String nombreProfesor, int nota, int annio, int semestre) {
+    public Asignatura(@Nullable int id, String nombre, String nombreProfesor, int nota, int annio, int semestre) {
         this.id = id;
         this.nombre = nombre;
         this.nombreProfesor = nombreProfesor;
