@@ -1,12 +1,16 @@
 package com.xookware.cursoandroidexample;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -24,6 +28,9 @@ import com.xookware.cursoandroidexample.database.DataBaseHandler;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private static final int REQUEST_READ_CONTACTS = 0;
+    private static final int REQUEST_WRITE_CONTACTS = 1;
+    private static final int REQUEST_CAMARA = 2;
     private DataBaseHandler db;
     private Toolbar toolbar;
 
@@ -35,6 +42,54 @@ public class MainActivity extends AppCompatActivity
         toolbar.setTitle(getResources().getString(R.string.app_name));
         setSupportActionBar(toolbar);
 
+        //solicitando permisos
+
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.READ_CONTACTS)
+                != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.READ_CONTACTS)) {
+
+            } else {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.READ_CONTACTS},
+                        REQUEST_READ_CONTACTS);
+            }
+        }
+
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.WRITE_CONTACTS)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.WRITE_CONTACTS)) {
+
+            } else {
+
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.WRITE_CONTACTS},
+                        REQUEST_WRITE_CONTACTS);
+
+            }
+        }
+
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.CAMERA)) {
+
+            } else {
+
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.CAMERA},
+                        REQUEST_CAMARA);
+
+            }
+        }
+
+
         db = new DataBaseHandler(this);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -45,6 +100,43 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case REQUEST_READ_CONTACTS: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                } else {
+
+                }
+                return;
+            }
+            case REQUEST_WRITE_CONTACTS: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                } else {
+
+                }
+                return;
+            }
+            case REQUEST_CAMARA: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                } else {
+
+                }
+                return;
+            }
+        }
     }
 
     @Override
@@ -109,7 +201,9 @@ public class MainActivity extends AppCompatActivity
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
+            intent = new Intent("android.media.action.IMAGE_CAPTURE");
+            startActivityForResult(intent, 1);
+            return true;
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_asignaturas) {
