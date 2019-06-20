@@ -18,6 +18,8 @@ import com.xookware.cursoandroidexample.R;
 import com.xookware.cursoandroidexample.database.DataBaseHandler;
 import com.xookware.cursoandroidexample.model.Asignatura;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -41,7 +43,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> implements
     public Adapter(Context context) {
         inflater = LayoutInflater.from(context);
         db = new DataBaseHandler(context);
-        mValues = AsignaturasItem.getObjectList(db.getAlL());
+        mValues = AsignaturasItem.getObjectList((ArrayList<Asignatura>) db.getAlL());
 
     }
 

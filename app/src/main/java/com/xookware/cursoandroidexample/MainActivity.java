@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
@@ -22,8 +23,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.xookware.cursoandroidexample.model.Asignatura;
 import com.xookware.cursoandroidexample.activities.AsignaturasActivity;
 import com.xookware.cursoandroidexample.database.DataBaseHandler;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -195,6 +200,8 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         String toolbar_text = "";
+        //lo voy a convertir todo a byte[]
+
 
         Intent intent = null;
         Fragment fragment = null;
@@ -208,6 +215,9 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_asignaturas) {
             intent = new Intent(MainActivity.this, AsignaturasActivity.class);
+            ArrayList<Asignatura> asignaturas = (ArrayList<Asignatura>) db.getAlL();
+            intent.putParcelableArrayListExtra("lista", asignaturas);
+
 
         } else if (id == R.id.nav_manage) {
 

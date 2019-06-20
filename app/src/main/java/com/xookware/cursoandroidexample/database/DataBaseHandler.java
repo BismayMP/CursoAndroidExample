@@ -8,7 +8,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.xookware.cursoandroidexample.model.Asignatura;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by Bismay on 13/6/2019.
@@ -105,8 +107,8 @@ public class DataBaseHandler extends SQLiteOpenHelper {
 
     // GET ALL
     //Este metodo sirve para recuperar todos los datos de una tabla de mi base de datos mi base de datos
-    public LinkedList<Asignatura> getAlL() {
-        LinkedList<Asignatura> list = new LinkedList<Asignatura>();
+    public List<Asignatura> getAlL() {
+        List<Asignatura> list = new ArrayList<>();
         // Select All Query
         String selectQuery = "SELECT * FROM " + TABLE_CURSO;
 

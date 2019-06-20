@@ -1,12 +1,14 @@
 package com.xookware.cursoandroidexample.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 
 /**
  * Created by Bismay on 13/6/2019.
  */
 
-public class Asignatura {
+public class Asignatura implements Parcelable {
 
     private int id;
     private String nombre;
@@ -35,6 +37,27 @@ public class Asignatura {
     public Asignatura() {
 
     }
+
+    protected Asignatura(Parcel in) {
+        id = in.readInt();
+        nombre = in.readString();
+        nombreProfesor = in.readString();
+        nota = in.readInt();
+        annio = in.readInt();
+        semestre = in.readInt();
+    }
+
+    public static final Creator<Asignatura> CREATOR = new Creator<Asignatura>() {
+        @Override
+        public Asignatura createFromParcel(Parcel in) {
+            return new Asignatura(in);
+        }
+
+        @Override
+        public Asignatura[] newArray(int size) {
+            return new Asignatura[size];
+        }
+    };
 
     public int getId() {
         return id;
@@ -82,5 +105,25 @@ public class Asignatura {
 
     public void setSemestre(int semestre) {
         this.semestre = semestre;
+    }
+
+    @Override
+    public String toString() {
+        return "{id: " + String.valueOf(id) + " , nombre: " + nombre + " , nombre_profesor: " + nombreProfesor + " , nota: " + String.valueOf(nota) + " , año: " + String.valueOf(annio) + " , semestre:" + String.valueOf(semestre) +"}";
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(nombre);
+        dest.writeString(nombreProfesor);
+        dest.writeInt(nota);
+        dest.writeInt(annio);
+        dest.writeInt(semestre);
     }
 }

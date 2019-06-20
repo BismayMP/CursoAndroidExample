@@ -21,6 +21,7 @@ import com.xookware.cursoandroidexample.R;
 import com.xookware.cursoandroidexample.database.DataBaseHandler;
 import com.xookware.cursoandroidexample.model.Asignatura;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 /**
@@ -38,7 +39,7 @@ public class ListaFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     private RecyclerView recyclerView;
-    private LinkedList<Asignatura> mlist = new LinkedList<>();
+    private ArrayList<Asignatura> mlist = new ArrayList<>();
     private DataBaseHandler db;
     private View view;
     private Context context;
@@ -87,7 +88,7 @@ public class ListaFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_lista, container, false);
         db = new DataBaseHandler(view.getContext());
-        mlist = db.getAlL();
+        mlist = (ArrayList<Asignatura>) db.getAlL();
 
         layoutManager = new LinearLayoutManager(view.getContext());
         recyclerView = (RecyclerView) view.findViewById(R.id.lista);

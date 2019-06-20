@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -18,6 +19,9 @@ import com.xookware.cursoandroidexample.R;
 import com.xookware.cursoandroidexample.database.DataBaseHandler;
 import com.xookware.cursoandroidexample.fragments.InsertarFragment;
 import com.xookware.cursoandroidexample.fragments.ListaFragment;
+import com.xookware.cursoandroidexample.model.Asignatura;
+
+import java.util.ArrayList;
 
 public class AsignaturasActivity extends AppCompatActivity implements InsertarFragment.OnFragmentInteractionListener, ListaFragment.OnFragmentInteractionListener{
 
@@ -26,6 +30,8 @@ public class AsignaturasActivity extends AppCompatActivity implements InsertarFr
     private DataBaseHandler db;
     private BottomNavigationView navigation;
     private LinearLayout layout;
+
+    private ArrayList<Asignatura> recibido = new ArrayList();
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -63,6 +69,12 @@ public class AsignaturasActivity extends AppCompatActivity implements InsertarFr
         setContentView(R.layout.activity_asignaturas);
         layout = (LinearLayout) findViewById(R.id.container_g);
         db = new DataBaseHandler(this);
+
+        recibido = getIntent().getParcelableArrayListExtra("lista");
+        for (Asignatura item: recibido
+             ) {
+            Log.i(item.getNombre() + ": ", item.toString());
+        }
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Gestión de asignaturas");

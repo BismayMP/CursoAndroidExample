@@ -20,6 +20,7 @@ import com.xookware.cursoandroidexample.R;
 import com.xookware.cursoandroidexample.database.DataBaseHandler;
 import com.xookware.cursoandroidexample.model.Asignatura;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 /**
@@ -52,7 +53,7 @@ public class InsertarFragment extends Fragment {
     private NumberPicker annio;
     private FloatingActionButton aceptar_fab;
     private int semestre;
-    private LinkedList<Asignatura> lista;
+    private ArrayList<Asignatura> lista;
 
     private Asignatura edit;
 
@@ -137,7 +138,7 @@ public class InsertarFragment extends Fragment {
                     }
                     final Asignatura a = new Asignatura(asignatura.getText().toString(), profesor.getText().toString(),
                             nota.getValue(), annio.getValue(), semestre);
-                    lista = db.getAlL();
+                    lista = (ArrayList<Asignatura>) db.getAlL();
                     for (Asignatura b : lista) {
                         if (b.getNombre().equals(a.getNombre())) {
                             exist = true;

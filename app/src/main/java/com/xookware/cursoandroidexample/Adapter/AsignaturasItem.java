@@ -2,6 +2,7 @@ package com.xookware.cursoandroidexample.Adapter;
 
 import com.xookware.cursoandroidexample.model.Asignatura;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -41,7 +42,7 @@ public class AsignaturasItem {
         this.profesor = profesor;
     }
 
-    public static List<AsignaturasItem> getObjectList(LinkedList<Asignatura> list)
+    public static List<AsignaturasItem> getObjectList(ArrayList<Asignatura> list)
     {
         List<AsignaturasItem> dataList = new LinkedList<>();
         for (int i = 0; i < list.size(); i++) {
