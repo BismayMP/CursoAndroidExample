@@ -200,8 +200,6 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         String toolbar_text = "";
-        //lo voy a convertir todo a byte[]
-
 
         Intent intent = null;
         Fragment fragment = null;
@@ -217,7 +215,6 @@ public class MainActivity extends AppCompatActivity
             intent = new Intent(MainActivity.this, AsignaturasActivity.class);
             ArrayList<Asignatura> asignaturas = (ArrayList<Asignatura>) db.getAlL();
             intent.putParcelableArrayListExtra("lista", asignaturas);
-
 
         } else if (id == R.id.nav_manage) {
 
